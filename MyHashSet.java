@@ -3,12 +3,12 @@ import java.util.LinkedList;
 class MyHashSet {
     
     private LinkedList<Integer>[] BucketArray ;
-    // private LinkedList<Integer>[] Buckets = new LinkedList<Integer>[100];
     private int SetRange;
-
+    
+    @SuppressWarnings("unchecked")
     public MyHashSet() {
         this.SetRange = 1000;
-        this.BucketArray = new LinkedList[SetRange];
+        this.BucketArray =  new LinkedList[SetRange];
         for (int i = 0; i < SetRange; i++) {
             this.BucketArray[i] = new LinkedList<Integer>();
         }
