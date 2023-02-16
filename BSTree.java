@@ -26,13 +26,17 @@ public class BSTree {
             if(val == node.val) {
                 break;
             }
+            
             if(val > node.val){
-                if(node.right == null){
-                    node.right = new TreeNode(val);
+                TreeNode fat = node;
+                node = node.right;
+                if(node == null){
+                    node = new TreeNode(val);
+                    fat.right = node;
                     break;
                 }
-                node = node.right;
             }
+
             if(val < node.val){
                 if(node.left == null){
                     node.left = new TreeNode(val);
