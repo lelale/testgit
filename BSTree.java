@@ -98,32 +98,42 @@ public class BSTree {
         }
 
         // find the node to delete and its father node
-        while (root != null ){
-            if (val == root.val){
-                delete = root;
-                break;
+        while(delete != null && delete.val != val){
+            father = delete;
+            if(val > delete.val){
+                delete = delete.right;
             }
-            else if (val > root.val){
-                if(root.right.val == val){
-                    father = root;
-                    delete = root.right;
-                    break;
-                }
-                else {
-                    root = root.right;
-                }
-            }
-            else if (val < root.val){
-                if(root.left.val == val){
-                    father = root;
-                    delete = root.left;
-                    break;
-                }
-                else {
-                    root = root.left;
-                }
+            else{
+                delete = delete.left;
             }
         }
+
+        // while (root != null ){
+        //     if (val == root.val){
+        //         delete = root;
+        //         break;
+        //     }
+        //     else if (val > root.val){
+        //         if(root.right.val == val){
+        //             father = root;
+        //             delete = root.right;
+        //             break;
+        //         }
+        //         else {
+        //             root = root.right;
+        //         }
+        //     }
+        //     else if (val < root.val){
+        //         if(root.left.val == val){
+        //             father = root;
+        //             delete = root.left;
+        //             break;
+        //         }
+        //         else {
+        //             root = root.left;
+        //         }
+        //     }
+        // }
 
         // delte leaf node
         if(delete.left == null && delete.right == null){
@@ -165,6 +175,63 @@ public class BSTree {
     }
 
 
+    // public TreeNode deleteNode(TreeNode root, int val) {
+    //     if (root == null) {
+    //         return null;
+    //     }
+    
+    //     // find the node to delete and its father node
+    //     TreeNode delete = root;
+    //     TreeNode father = null;
+    //     while (delete != null && delete.val != val) {
+    //         father = delete;
+    //         if (val < delete.val) {
+    //             delete = delete.left;
+    //         } else {
+    //             delete = delete.right;
+    //         }
+    //     }
+    
+    //     // the node to be deleted is not found
+    //     if (delete == null) {
+    //         return root;
+    //     }
+    
+    //     // delete node has both left and right children
+    //     if (delete.left != null && delete.right != null) {
+    //         TreeNode successor = delete.right;
+    //         TreeNode successorFather = delete;
+    //         while (successor.left != null) {
+    //             successorFather = successor;
+    //             successor = successor.left;
+    //         }
+    //         delete.val = successor.val;
+    //         delete = successor;
+    //         father = successorFather;
+    //     }
+    
+    //     // delete node has at most one child
+    //     TreeNode child = null;
+    //     if (delete.left != null) {
+    //         child = delete.left;
+    //     } else if (delete.right != null) {
+    //         child = delete.right;
+    //     }
+    
+    //     if (father == null) {
+    //         // the node to delete is the root node
+    //         root = child;
+    //     } else if (delete == father.left) {
+    //         father.left = child;
+    //     } else {
+    //         father.right = child;
+    //     }
+    
+    //     return root;
+    // }
+    
+
+
     public void printTree(TreeNode root) {
         if (root == null) {
             return;
@@ -180,15 +247,24 @@ public class BSTree {
     public static void main(String[] args) {
         BSTree tree = new BSTree();
 
-        tree.root = tree.insertIntoBST(tree.root, 5);
-        tree.insertIntoBST(tree.root, 2);
-        tree.insertIntoBST(tree.root, 7);
-        tree.insertIntoBST(tree.root, 1);
-        tree.insertIntoBST(tree.root, 3);
-        tree.insertIntoBST(tree.root, 6);
-        tree.insertIntoBST(tree.root, 8);
+        tree.root = tree.insertIntoBST(tree.root, 51);
+        tree.insertIntoBST(tree.root, 24);
+        tree.insertIntoBST(tree.root, 97);
+        tree.insertIntoBST(tree.root, 17);
+        tree.insertIntoBST(tree.root, 35);
+        tree.insertIntoBST(tree.root, 66);
+        tree.insertIntoBST(tree.root,29);
+        tree.insertIntoBST(tree.root, 53);
+        tree.insertIntoBST(tree.root, 78);
+        tree.insertIntoBST(tree.root, 31);
+        tree.insertIntoBST(tree.root, 32);
+        tree.insertIntoBST(tree.root,52 );
+        tree.insertIntoBST(tree.root, 57);
+        tree.insertIntoBST(tree.root, 71);
+        tree.insertIntoBST(tree.root, 86);
+        tree.insertIntoBST(tree.root, 85);
 
-        tree.deleteNode(tree.root,8);
+        tree.deleteNode(tree.root,51);
 
         tree.printTree(tree.root);
     }
