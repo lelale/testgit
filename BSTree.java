@@ -90,6 +90,11 @@ public class BSTree {
     
     // It deletes the node of a given value of a BSTree
     // It takes with the root of the tree and the vlaue as input, and it returns the root of the updated tree
+    /**
+     * @param root
+     * @param val
+     * @return
+     */
     public TreeNode deleteNode(TreeNode root, int val){
         TreeNode delete = root;
         TreeNode father = null;
@@ -108,34 +113,9 @@ public class BSTree {
             }
         }
 
-        // while (root != null ){
-        //     if (val == root.val){
-        //         delete = root;
-        //         break;
-        //     }
-        //     else if (val > root.val){
-        //         if(root.right.val == val){
-        //             father = root;
-        //             delete = root.right;
-        //             break;
-        //         }
-        //         else {
-        //             root = root.right;
-        //         }
-        //     }
-        //     else if (val < root.val){
-        //         if(root.left.val == val){
-        //             father = root;
-        //             delete = root.left;
-        //             break;
-        //         }
-        //         else {
-        //             root = root.left;
-        //         }
-        //     }
-        // }
+     
 
-        // delte leaf node
+        // delete leaf node
         if(delete.left == null && delete.right == null){
             if (father == null){
                 return null;
