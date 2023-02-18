@@ -216,7 +216,6 @@ public class BSTree {
         if (root == null) {
             return;
         }
-
         printTree(root.left);
         System.out.println(root.val);
         printTree(root.right);
