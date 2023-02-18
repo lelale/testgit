@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TreeNode",
+            "request": "launch",
+            "mainClass": "TreeNode",
+            "projectName": "git测试使用_bbdb0254"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

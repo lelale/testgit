@@ -7,6 +7,7 @@ class MyHashSet {
     private int keyRange;
   
     /** Initialize your data structure here. */
+    //***alert should be modified */
     public MyHashSet() {
       this.keyRange = 769;
       this.bucketArray = new Bucket[this.keyRange];
@@ -15,8 +16,9 @@ class MyHashSet {
     }
   
     // ***should be modified
+    // ****alert
     protected int _hash(int key) {
-      return 17;
+      return key % this.keyRange;
     }
   
     public void add(int key) {
@@ -250,9 +252,10 @@ class MyHashSet {
             }
         }
 
-        // delete val is not exist
+        // delete val is not exist'
+        // alert everything is wrongly disappear
         if(delete == null){
-          return null;
+          return root;
         }
 
         // delete leaf node
@@ -285,10 +288,9 @@ class MyHashSet {
             delete.right = left.right;
         }
         else{
-            int suc = successor(root);
-            deleteNode(root, suc);
-            delete.val = suc;
-
+          int suc = successor(delete);
+          delete.right = deleteNode(delete.right, suc);
+          delete.val = suc;
             
         }
         return root;

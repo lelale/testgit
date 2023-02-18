@@ -1,4 +1,14 @@
 
+ class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+  
+    TreeNode(int x) {
+      val = x;
+    }
+}
+
 
 public class BSTree {
     TreeNode root = null;
@@ -78,24 +88,16 @@ public class BSTree {
     }
 
     //return the smallest number of the right tree
-    public int successor(TreeNode root, int val){
-        TreeNode suc = root.right;
-        int sucVal = suc.val;
-        while (suc != null){
-            sucVal = suc.val;
-            suc = suc.left;
-        }
-        return sucVal;
-    }
+    public int successor(TreeNode root) {
+        root = root.right;
+        while (root.left != null)
+          root = root.left;
+        return root.val;
+      }
     
     // It deletes the node of a given value of a BSTree
     // It takes with the root of the tree and the vlaue as input, and it returns the root of the updated tree
-    /**
-     * @param root
-     * @param val
-     * @return
-     */
-    public TreeNode deleteNode(TreeNode root, int val){
+    public TreeNode deleteNode(TreeNode root, int val) {
         TreeNode delete = root;
         TreeNode father = null;
         if (root == null){
@@ -103,6 +105,7 @@ public class BSTree {
         }
 
         // find the node to delete and its father node
+        // if delete val is not exist, delete is null
         while(delete != null && delete.val != val){
             father = delete;
             if(val > delete.val){
@@ -113,10 +116,14 @@ public class BSTree {
             }
         }
 
-     
+        // delete val is not exist
+        if(delete == null){
+          return root;
+        }
 
         // delete leaf node
-        if(delete.left == null && delete.right == null){
+        // before refering to delete.left, we should make sure delete is null
+        if(delete!= null && delete.left == null && delete.right == null){
             if (father == null){
                 return null;
             }
@@ -143,72 +150,18 @@ public class BSTree {
             delete.left = left.left; 
             delete.right = left.right;
         }
+        //with both left and right child
+        //right successor
         else{
-            int suc = successor(root, val);
-            deleteNode(root, suc);
-            delete.val = suc;
-
-            
+            int suc = successor(delete);
+            delete.right = deleteNode(delete.right, suc);
+            delete.val = suc;          
         }
         return root;
-
     }
 
 
-    // public TreeNode deleteNode(TreeNode root, int val) {
-    //     if (root == null) {
-    //         return null;
-    //     }
-    
-    //     // find the node to delete and its father node
-    //     TreeNode delete = root;
-    //     TreeNode father = null;
-    //     while (delete != null && delete.val != val) {
-    //         father = delete;
-    //         if (val < delete.val) {
-    //             delete = delete.left;
-    //         } else {
-    //             delete = delete.right;
-    //         }
-    //     }
-    
-    //     // the node to be deleted is not found
-    //     if (delete == null) {
-    //         return root;
-    //     }
-    
-    //     // delete node has both left and right children
-    //     if (delete.left != null && delete.right != null) {
-    //         TreeNode successor = delete.right;
-    //         TreeNode successorFather = delete;
-    //         while (successor.left != null) {
-    //             successorFather = successor;
-    //             successor = successor.left;
-    //         }
-    //         delete.val = successor.val;
-    //         delete = successor;
-    //         father = successorFather;
-    //     }
-    
-    //     // delete node has at most one child
-    //     TreeNode child = null;
-    //     if (delete.left != null) {
-    //         child = delete.left;
-    //     } else if (delete.right != null) {
-    //         child = delete.right;
-    //     }
-    
-    //     if (father == null) {
-    //         // the node to delete is the root node
-    //         root = child;
-    //     } else if (delete == father.left) {
-    //         father.left = child;
-    //     } else {
-    //         father.right = child;
-    //     }
-    
-    //     return root;
-    // }
+   
     
 
 
@@ -226,24 +179,26 @@ public class BSTree {
     public static void main(String[] args) {
         BSTree tree = new BSTree();
 
-        tree.root = tree.insertIntoBST(tree.root, 51);
-        tree.insertIntoBST(tree.root, 24);
-        tree.insertIntoBST(tree.root, 97);
-        tree.insertIntoBST(tree.root, 17);
-        tree.insertIntoBST(tree.root, 35);
-        tree.insertIntoBST(tree.root, 66);
-        tree.insertIntoBST(tree.root,29);
-        tree.insertIntoBST(tree.root, 53);
-        tree.insertIntoBST(tree.root, 78);
-        tree.insertIntoBST(tree.root, 31);
-        tree.insertIntoBST(tree.root, 32);
-        tree.insertIntoBST(tree.root,52 );
-        tree.insertIntoBST(tree.root, 57);
-        tree.insertIntoBST(tree.root, 71);
-        tree.insertIntoBST(tree.root, 86);
-        tree.insertIntoBST(tree.root, 85);
+        tree.root = tree.insertIntoBST(tree.root, 488);
+        tree.root = tree.insertIntoBST(tree.root, 41);
+        // tree.root = tree.insertIntoBST(tree.root, 51);
+        // tree.insertIntoBST(tree.root, 24);
+        // tree.insertIntoBST(tree.root, 97);
+        // tree.insertIntoBST(tree.root, 17);
+        // tree.insertIntoBST(tree.root, 35);
+        // tree.insertIntoBST(tree.root, 66);
+        // tree.insertIntoBST(tree.root,29);
+        // tree.insertIntoBST(tree.root, 53);
+        // tree.insertIntoBST(tree.root, 78);
+        // tree.insertIntoBST(tree.root, 31);
+        // tree.insertIntoBST(tree.root, 32);
+        // tree.insertIntoBST(tree.root,52 );
+        // tree.insertIntoBST(tree.root, 57);
+        // tree.insertIntoBST(tree.root, 71);
+        // tree.insertIntoBST(tree.root, 86);
+        // tree.insertIntoBST(tree.root, 85);
 
-        tree.deleteNode(tree.root,51);
+        tree.root = tree.deleteNode(tree.root,87);
 
         tree.printTree(tree.root);
     }
