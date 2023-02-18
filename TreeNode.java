@@ -11,8 +11,9 @@ class MyHashSet {
         this.bucketArray[i] = new Bucket();
     }
   
+    // ***should be modified
     protected int _hash(int key) {
-      return (key % this.keyRange);
+      return 17;
     }
   
     public void add(int key) {
@@ -91,15 +92,27 @@ class MyHashSet {
 
     public static void main(String[] args){
       MyHashSet mhs = new MyHashSet();
-        mhs.add(20);
-        mhs.PrintBucket();
-        mhs.remove(20);
-        mhs.PrintBucket();
-        mhs.add(50);
-        mhs.add(50);
-        mhs.add(50);
+        mhs.add(51);
+        mhs.add(24);
+        mhs.add(97);
+        mhs.add(17);
+        mhs.add(35);
+        mhs.add(66);
+        mhs.add(29);
+        mhs.add(53);
+        mhs.add(78);
+        mhs.add(31);
+        mhs.add(32);
+        mhs.add(52);
+        mhs.add(57);
+        mhs.add(71);
+        mhs.add(86);
+        mhs.add(85);
         mhs.remove(50);
-        mhs.contains(50);  
+        // mhs.contains(50);  
+        mhs.PrintBucket();
+
+       
     }
   }
   
@@ -176,6 +189,7 @@ class MyHashSet {
         }
 
         // find the node to delete and its father node
+        // if delete val is not exist, delete is null
         while(delete != null && delete.val != val){
             father = delete;
             if(val > delete.val){
@@ -186,10 +200,14 @@ class MyHashSet {
             }
         }
 
-     
+        // delete val is not exist
+        if(delete == null){
+          return null;
+        }
 
         // delete leaf node
-        if(delete.left == null && delete.right == null){
+        // before refering to delete.left, we should make sure delete is null
+        if(delete!= null && delete.left == null && delete.right == null){
             if (father == null){
                 return null;
             }
