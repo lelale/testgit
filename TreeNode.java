@@ -107,6 +107,8 @@ class MyHashSet {
      {42},{50},{19},{32},{67},{84},{60},{8},{85},{43},{59},{65},{40},{81},{55},{56},{54},{59},{78},{53},{0},{24},{7},{53},{33},{69},{86},{7},{1},{16},{58},{61},{34},
      {53},{84},{21},{58},{25},{45},{3}};
      Object[] officalResult = {false,null,null,null,false,null,false,false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null,true,null,null,true,null,null,null,null,null,null,null,null,false,null,null,null,null,false,null,false,null,null,null,null,null,false,null,null,null,null,false,null,null,null,null,null,null,false,true,null,null,null,null,null,null,null,false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null};
+    //  Object[] oR1 = {false,null,null,null,false,null,false,false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null,true,null,null,true,null,null,null,null,null,null,null,null,false,null,null,null,null,false,null,false,null,null,null,null,null,false,null,null,null,null,false,null,null,null,null,null,null,false,true,null,null,null,null,null,null,null,false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null};
+    //  System.out.println(officalResult[1] == oR1[0]);
      List<Integer> numsArray = new ArrayList<>();
      for(int[] row : nums){
       for(int num: row){
@@ -125,19 +127,25 @@ class MyHashSet {
           case "add":
             result[i] = null;
             mhs.add(val);
+            break;
           case "remove":
           result[i] = null;
            mhs.remove(val);
+           break;
           case "contains":
           result[i] = mhs.contains(val);
+          break;
         }
      }
 
-     System.out.println(numsArray.size() == result.length);
-     System.out.println(numsArray.size());
-     System.out.println(result.length);
-     System.out.println(officalResult.length);
+    //  System.out.println(numsArray.size() == result.length);
+    //  System.out.println(numsArray.size());
+    //  System.out.println(result.length);
+    //  System.out.println(officalResult.length);
 
+     for(int i = 0; i< numsArray.size(); i++){
+        System.out.print(result[i]+" ");
+     }
      for(int i = 0; i< numsArray.size(); i++){
       if(result[i]!= null && officalResult[i]!= null && (result[i].toString() != officalResult[i].toString())){
         System.out.println(i);
